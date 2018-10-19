@@ -1,0 +1,12 @@
+language: python
+python: "3.6"
+install: true
+script: echo "Nothing to build"
+before_deploy:
+  - pip install git+https://github.com/romanvm1972/kodi-deploy-addon.git
+deploy:
+ - provider: script
+   skip_cleanup: true
+   script: deploy-addon -r repo-scripts -b krypton --push-branch --pull-request addon.tester
+notifications:
+  email: false
